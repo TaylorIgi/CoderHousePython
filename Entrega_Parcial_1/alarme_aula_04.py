@@ -46,9 +46,11 @@ def alerta(nivel, base, etapa):
             timeout = 20
             # toast = True
         )
-    
+
+'''    
 # Chama a função conforme os inputs do usuário
 UserNivel = int(input("Digite o nivel do alerta: "))
 UserBase = str(input("Digite o nome da base (deixe em branco se não for possível identificar): "))
 UserStage = str(input("Digite o nome da etapa (deixe em branco se não for possível identificar): "))
 alerta(UserNivel, UserBase, UserStage)
+'''

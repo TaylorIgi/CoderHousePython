@@ -12,16 +12,32 @@ def from_api_get_to_dataframe(my_object):
 
     return pd.DataFrame(my_object.json())
 
-def show_tables():
+def extract_and_print_tables():
     
     import pandas as pd
     import os
+    import time
 
-    df = pd.read_excel("Entrega_Parcial_1\\DE_PARA_API_URL_00.xlsx", sheet_name="de_para")
+    df = pd.read_excel("DE_PARA_API_URL_00.xlsx", sheet_name="de_para")
 
-    os.system('cls')
-    print("-"*40)
-    for my_row in range(0, len(df)):
-        print(f"{df.index[my_row]} >> {df.loc[my_row, "API"]}")
-    print("-"*40)
-    
+    table_qty = int(input("Quantas tabelas serão extraídas? "))
+    table_number = 1
+
+    while table_number <= table_qty:
+
+        os.system('cls')
+        print("-"*40)
+        for my_row in range(0, len(df)):
+            print(f"{df.index[my_row]} >> {df.loc[my_row, "API"]}")
+        print("-"*40)
+        
+        choosen_table_index = int(input(f"Digite o número da {table_number}a tabela: "))
+
+        choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
+        print(choosen_table_url_data.text)
+        #choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
+
+        #print(choosen_table_df.head[5])
+        time.sleep(4)
+
+        table_number +=1
