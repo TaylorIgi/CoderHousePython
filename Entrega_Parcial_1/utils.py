@@ -45,7 +45,14 @@ def extract_and_print_tables():
         else:
             choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
             choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
-            print(choosen_table_df.head[5])
+            os.system('cls')
+            print(f"Exemplo de dados da tabela {df.loc[choosen_table_index, "API"]}:\n")
+            print(choosen_table_df.head(5))
             time.sleep(4)
 
         table_number +=1
+    
+    os.system('cls')
+    print("Programa finalizado!")
+    time.sleep(4)
+    os.system('cls')
