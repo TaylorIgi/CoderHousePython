@@ -41,6 +41,7 @@ def extract_and_print_tables():
 
         if not check_api_get_data(api_get_data(df.loc[choosen_table_index, "URL"])):
             warning.alerta(3, df.loc[choosen_table_index, "API"], "Request GET URL")
+            continue
         else:
             choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
             choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
