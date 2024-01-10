@@ -6,8 +6,8 @@ def api_get_data(url_path):
 
     return response
 
-def check_api_get_data(response):
-    if response in range(200, 300):
+def check_api_get_data(response_sts_code):
+    if response_sts_code in range(200, 300):
         return True
     return False
 
@@ -24,7 +24,7 @@ def extract_and_print_tables():
     import time
     import alerta_aula_04 as warning
 
-    df = pd.read_excel("DE_PARA_API_URL_00.xlsx", sheet_name="de_para")
+    df = pd.read_excel("DE_PARA_API_URL.xlsx", sheet_name="de_para")
 
     table_qty = int(input("Quantas tabelas serão extraídas? "))
     table_number = 1
@@ -39,9 +39,9 @@ def extract_and_print_tables():
         
         choosen_table_index = int(input(f"Digite o número da {table_number}a tabela: "))
 
-        if not check_api_get_data(api_get_data(df.loc[choosen_table_index, "URL"])):
+        if not check_api_get_data(api_get_data(df.loc[choosen_table_index, "URL"]).status_code):
             warning.alerta(3, df.loc[choosen_table_index, "API"], "Request GET URL")
-            continue
+            #continue
         else:
             choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
             choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
