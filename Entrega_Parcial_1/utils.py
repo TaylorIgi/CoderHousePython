@@ -6,6 +6,11 @@ def api_get_data(url_path):
 
     return response
 
+def check_api_get_data(response):
+    if response in range(200, 300):
+        return True
+    return False
+
 def from_api_get_to_dataframe(my_object):
     
     import pandas as pd
@@ -17,6 +22,7 @@ def extract_and_print_tables():
     import pandas as pd
     import os
     import time
+    import alerta_aula_04 as warning
 
     df = pd.read_excel("DE_PARA_API_URL_00.xlsx", sheet_name="de_para")
 
@@ -33,11 +39,12 @@ def extract_and_print_tables():
         
         choosen_table_index = int(input(f"Digite o número da {table_number}a tabela: "))
 
-        choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
-        print(choosen_table_url_data.text)
-        #choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
-
-        #print(choosen_table_df.head[5])
-        time.sleep(4)
+        if not check_api_get_data(api_get_data(df.loc[choosen_table_index, "URL"])):
+            warning.alerta(3, df.loc[choosen_table_index, "API"], "Request GET URL")
+        else:
+            choosen_table_url_data = api_get_data(df.loc[choosen_table_index, "URL"])
+            choosen_table_df = from_api_get_to_dataframe(choosen_table_url_data)
+            print(choosen_table_df.head[5])
+            time.sleep(4)
 
         table_number +=1
