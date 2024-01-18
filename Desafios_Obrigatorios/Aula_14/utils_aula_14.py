@@ -1,36 +1,48 @@
 
-def extract_and_print_tables_new():
+def get_table():
     
     import pandas as pd
-    import os
-    import time
+
+    df_apis = pd.read_excel("DE_PARA_API_URL.xlsx", sheet_name="de_para")
+
+    for my_row in range(0, len(df_apis)):
+        print(f"{df_apis.index[my_row]} >> {df_apis.loc[my_row, "API"]}")
+    print("-"*40)
+    
+    choosen_table = int(input(f"Digite o número da tabela: "))
+    df = extract_tables(df_apis, choosen_table)
+
+    return {"API": df_apis.loc[choosen_table, "API"], "dataframe": df}
+
+def extract_tables(df, table_index):
+    
+    import pandas as pd
     import alerta_aula_04 as warning
     import utils
 
     df = pd.read_excel("DE_PARA_API_URL.xlsx", sheet_name="de_para")
 
-    table_qty = 1 #int(input("Quantas tabelas serão extraídas? "))
-    table_number = 1
-
-    while table_number <= table_qty:
-
-        #os.system('cls')
-        print("-"*40)
-        for my_row in range(0, len(df)):
-            print(f"{df.index[my_row]} >> {df.loc[my_row, "API"]}")
-        print("-"*40)
-        
-        choosen_table_index = int(input(f"Digite o número da {table_number}a tabela: "))
-
-        if not utils.check_api_get_data(utils.api_get_data(df.loc[choosen_table_index, "URL"]).status_code):
-            warning.alerta(3, df.loc[choosen_table_index, "API"], "Request GET URL")
-        else:
-            choosen_table_url_data = utils.api_get_data(df.loc[choosen_table_index, "URL"])
-            choosen_table_df = utils.from_api_get_to_dataframe(choosen_table_url_data)
-    #        os.system('cls')
-            print(f"Exemplo de dados da tabela {df.loc[choosen_table_index, "API"]}:\n")
-            print(choosen_table_df.head(5))
-     #       time.sleep(4)
-
-        table_number +=1
+    # Retorna um dataframe vazio se der erro no request
+    if not utils.check_api_get_data(utils.api_get_data(df.loc[table_index, "URL"]).status_code):
+        warning.alerta(3, df.loc[table_index, "API"], "Request GET URL")
+        return pd.DataFrame()
     
+    choosen_table_url_data = utils.api_get_data(df.loc[table_index, "URL"])
+    choosen_table_df = utils.from_api_get_to_dataframe(choosen_table_url_data)
+    
+    return choosen_table_df
+
+
+def transform_bancos(dataframe):
+
+    import pandas as pd
+
+    transformed_df = dataframe.drop_duplicates()
+    transformed_df = transformed_df.dropna(axis=0, subset=["ispb", "code"])
+
+    transformed_df["ispb"] = transformed_df["ispb"].astype("int")
+    transformed_df["code"] = transformed_df["code"].astype("int")
+
+    transformed_df.rename(columns={"fullName": "full_name"}, inplace = True)
+
+    return transformed_df  
