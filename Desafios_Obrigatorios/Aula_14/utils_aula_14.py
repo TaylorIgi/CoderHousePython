@@ -35,8 +35,6 @@ def extract_tables(df, table_index):
 
 def transform_bancos(dataframe):
 
-    import pandas as pd
-
     transformed_df = dataframe.drop_duplicates()
     transformed_df = transformed_df.dropna(axis=0, subset=["ispb", "code"])
 
