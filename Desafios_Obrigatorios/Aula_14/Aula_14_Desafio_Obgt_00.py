@@ -11,15 +11,21 @@ Descrição: Realizar o tratamento das bases coletadas via API do projeto final 
 '''
 import utils_aula_14
 import time
+import pandas as pd
+import numpy as np
 
 dict_df = utils_aula_14.get_table()
-print(dict_df["API"])
-
 
 if len(dict_df["dataframe"]) == 0:
     print("Dataframe vazio")
 elif dict_df["API"] == "Bancos":
     df = utils_aula_14.transform_bancos(dict_df["dataframe"])
+elif dict_df["API"] == "Corretoras":
+    df = utils_aula_14.transform_corretoras(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
 print(df.info())
+# for col in df.columns:
+#     print(df[col].head(5))
+    
+#print(df["cnpj"].unique())

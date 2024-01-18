@@ -32,15 +32,43 @@ def extract_tables(df, table_index):
     
     return choosen_table_df
 
-
 def transform_bancos(dataframe):
 
     transformed_df = dataframe.drop_duplicates()
     transformed_df = transformed_df.dropna(axis=0, subset=["ispb", "code"])
-
-    transformed_df["ispb"] = transformed_df["ispb"].astype("int")
-    transformed_df["code"] = transformed_df["code"].astype("int")
+    
+    subset_int = ["ispb", "code"]
+    for col in subset_int:
+        transformed_df[col] = transformed_df[col].astype("int")
 
     transformed_df.rename(columns={"fullName": "full_name"}, inplace = True)
 
-    return transformed_df  
+    return transformed_df
+
+def transform_corretoras(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe
+
+    transformed_df["valor_patrimonio_liquido"] = transformed_df["valor_patrimonio_liquido"].fillna(0)
+
+    transformed_df = transformed_df.dropna(axis=0, subset=["cnpj", "codigo_cvm"])
+
+    transformed_df = transformed_df.drop_duplicates()
+
+    subset_int = ["codigo_cvm"]
+    for col in subset_int:
+        transformed_df[col] = transformed_df[col].astype("int")
+    
+    subset_float = ["valor_patrimonio_liquido"]
+    for col in subset_float:
+        transformed_df[col] = transformed_df[col].astype("float")
+
+    subset_date = ["data_patrimonio_liquido", "data_inicio_situacao", "data_registro"]
+    for col in subset_date:
+        transformed_df[col] = pd.to_datetime(transformed_df[col])
+
+    return transformed_df
