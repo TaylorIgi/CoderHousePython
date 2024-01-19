@@ -30,8 +30,8 @@ elif dict_df["API"] == "Feriados Nacionais 2024":
     df = utils_aula_14.transform_feriados(dict_df["dataframe"])
 elif dict_df["API"] == "IBGE - UF/Região":
     df = utils_aula_14.transform_regiao(dict_df["dataframe"])
-
-
+elif dict_df["API"] == "NCMs":
+    df = utils_aula_14.transform_ncm(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
 print(df.info())
@@ -39,4 +39,4 @@ print(df.info())
 # for col in df.columns:
 #     print(df[col].head(5))
     
-#print(df["cnpj"].unique())
+# print(df["data_fim"].unique())

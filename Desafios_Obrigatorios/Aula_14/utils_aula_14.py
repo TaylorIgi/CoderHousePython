@@ -120,3 +120,27 @@ def transform_regiao(dataframe):
     transformed_df = transformed_df.drop_duplicates()
 
     return transformed_df
+
+def transform_ncm(dataframe):
+
+    import pandas as pd
+    import numpy as np
+    from datetime import datetime as dt
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+
+    subset_float = ["numero_ato", "ano_ato"]
+    for col in subset_float:
+        transformed_df[col] = transformed_df[col].astype("int")
+
+    # Ajusta as datas para a maior data suportada pelo pandas
+    transformed_df["data_fim_aj"] = transformed_df["data_fim"].replace("9999-12-31", pd.Timestamp.max, inplace=False)
+    transformed_df.rename(columns={"data_fim": "data_fim_original"}, inplace = True)
+
+    subset_date = ["data_inicio", "data_fim_aj"]
+    for col in subset_date:
+        #transformed_df[col] = transformed_df[col].apply(lambda x: dt.strptime(x, "%Y-%m-%d"))
+        transformed_df[col] = pd.to_datetime(transformed_df[col])
+
+    return transformed_df
