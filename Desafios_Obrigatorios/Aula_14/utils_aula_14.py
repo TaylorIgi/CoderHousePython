@@ -105,3 +105,18 @@ def transform_feriados(dataframe):
     transformed_df["date"] = pd.to_datetime(transformed_df["date"])
 
     return transformed_df
+
+def transform_regiao(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe["regiao_id"] = dataframe["regiao"].apply(lambda x: x["id"])
+    dataframe["regiao_sigla"] = dataframe["regiao"].apply(lambda x: x["sigla"])
+    dataframe["regiao_nome"] = dataframe["regiao"].apply(lambda x: x["nome"])
+    transformed_df = dataframe.drop(columns="regiao")
+
+    transformed_df.replace("", np.nan, inplace=True)
+    transformed_df = transformed_df.drop_duplicates()
+
+    return transformed_df

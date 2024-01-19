@@ -28,6 +28,10 @@ elif dict_df["API"] == "Clima Capitais":
     df = utils_aula_14.transform_clima(dict_df["dataframe"])
 elif dict_df["API"] == "Feriados Nacionais 2024":
     df = utils_aula_14.transform_feriados(dict_df["dataframe"])
+elif dict_df["API"] == "IBGE - UF/Região":
+    df = utils_aula_14.transform_regiao(dict_df["dataframe"])
+
+
 
 print(dict_df["dataframe"].info())
 print(df.info())
