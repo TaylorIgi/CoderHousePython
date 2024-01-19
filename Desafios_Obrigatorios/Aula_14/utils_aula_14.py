@@ -83,3 +83,14 @@ def transform_cidade_uf (dataframe):
     transformed_df["id"] = transformed_df["id"].astype("int")
 
     return transformed_df
+
+def transform_clima(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+    transformed_df["atualizado_em"] = pd.to_datetime(transformed_df["atualizado_em"])
+
+    return transformed_df
