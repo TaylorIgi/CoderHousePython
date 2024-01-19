@@ -32,11 +32,13 @@ elif dict_df["API"] == "IBGE - UF/Região":
     df = utils_aula_14.transform_regiao(dict_df["dataframe"])
 elif dict_df["API"] == "NCMs":
     df = utils_aula_14.transform_ncm(dict_df["dataframe"])
+elif dict_df["API"] == "PIX":
+    df = utils_aula_14.transform_pix(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
 print(df.info())
 # print(dict_df["dataframe"].head(5))
-# for col in df.columns:
-#     print(df[col].head(5))
+# for col in dict_df["dataframe"].columns:
+#     print(dict_df["dataframe"][col].head(5))
     
 # print(df["data_fim"].unique())

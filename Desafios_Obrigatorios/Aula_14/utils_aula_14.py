@@ -125,13 +125,13 @@ def transform_ncm(dataframe):
 
     import pandas as pd
     import numpy as np
-    from datetime import datetime as dt
+    #from datetime import datetime as dt
 
     dataframe.replace("", np.nan, inplace=True)
     transformed_df = dataframe.drop_duplicates()
 
-    subset_float = ["numero_ato", "ano_ato"]
-    for col in subset_float:
+    subset_int = ["numero_ato", "ano_ato"]
+    for col in subset_int:
         transformed_df[col] = transformed_df[col].astype("int")
 
     # Ajusta as datas para a maior data suportada pelo pandas
@@ -141,6 +141,24 @@ def transform_ncm(dataframe):
     subset_date = ["data_inicio", "data_fim_aj"]
     for col in subset_date:
         #transformed_df[col] = transformed_df[col].apply(lambda x: dt.strptime(x, "%Y-%m-%d"))
+        transformed_df[col] = pd.to_datetime(transformed_df[col])
+
+    return transformed_df
+
+def transform_pix(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+
+    subset_int = ["ispb"]
+    for col in subset_int:
+        transformed_df[col] = transformed_df[col].astype("int")
+
+    subset_date = ["inicio_operacao"]
+    for col in subset_date:
         transformed_df[col] = pd.to_datetime(transformed_df[col])
 
     return transformed_df
