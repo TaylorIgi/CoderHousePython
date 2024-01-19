@@ -34,6 +34,8 @@ elif dict_df["API"] == "NCMs":
     df = utils_aula_14.transform_ncm(dict_df["dataframe"])
 elif dict_df["API"] == "PIX":
     df = utils_aula_14.transform_pix(dict_df["dataframe"])
+elif dict_df["API"] == "Taxas":
+    df = utils_aula_14.transform_taxas(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
 print(df.info())

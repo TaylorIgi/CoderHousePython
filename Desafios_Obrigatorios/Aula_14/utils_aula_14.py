@@ -162,3 +162,13 @@ def transform_pix(dataframe):
         transformed_df[col] = pd.to_datetime(transformed_df[col])
 
     return transformed_df
+
+def transform_taxas(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+
+    return transformed_df
