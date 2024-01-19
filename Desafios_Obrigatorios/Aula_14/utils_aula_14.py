@@ -72,3 +72,14 @@ def transform_corretoras(dataframe):
         transformed_df[col] = pd.to_datetime(transformed_df[col])
 
     return transformed_df
+
+def transform_cidade_uf (dataframe):
+    
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+    transformed_df["id"] = transformed_df["id"].astype("int")
+
+    return transformed_df

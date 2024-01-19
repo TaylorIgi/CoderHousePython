@@ -22,6 +22,8 @@ elif dict_df["API"] == "Bancos":
     df = utils_aula_14.transform_bancos(dict_df["dataframe"])
 elif dict_df["API"] == "Corretoras":
     df = utils_aula_14.transform_corretoras(dict_df["dataframe"])
+elif dict_df["API"] == "Cidade / UF":
+    df = utils_aula_14.transform_cidade_uf(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
 print(df.info())
