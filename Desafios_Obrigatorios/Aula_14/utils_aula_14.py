@@ -73,7 +73,7 @@ def transform_corretoras(dataframe):
 
     return transformed_df
 
-def transform_cidade_uf (dataframe):
+def transform_cidade_uf(dataframe):
     
     import pandas as pd
     import numpy as np
@@ -92,5 +92,16 @@ def transform_clima(dataframe):
     dataframe.replace("", np.nan, inplace=True)
     transformed_df = dataframe.drop_duplicates()
     transformed_df["atualizado_em"] = pd.to_datetime(transformed_df["atualizado_em"])
+
+    return transformed_df
+
+def transform_feriados(dataframe):
+
+    import pandas as pd
+    import numpy as np
+
+    dataframe.replace("", np.nan, inplace=True)
+    transformed_df = dataframe.drop_duplicates()
+    transformed_df["date"] = pd.to_datetime(transformed_df["date"])
 
     return transformed_df
