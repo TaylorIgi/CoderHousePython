@@ -26,7 +26,7 @@ def extract_tables(df, table_index):
     if not utils.check_api_get_data(utils.api_get_data(df.loc[table_index, "URL"]).status_code):
         warning.alerta(3, df.loc[table_index, "API"], "Request GET URL")
         return pd.DataFrame()
-    
+
     choosen_table_url_data = utils.api_get_data(df.loc[table_index, "URL"])
     choosen_table_df = utils.from_api_get_to_dataframe(choosen_table_url_data)
     

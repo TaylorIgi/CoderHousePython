@@ -38,7 +38,7 @@ elif dict_df["API"] == "Taxas":
     df = utils_aula_14.transform_taxas(dict_df["dataframe"])
 
 print(dict_df["dataframe"].info())
-print(df.info())
+#print(df.info())
 # print(dict_df["dataframe"].head(5))
 # for col in dict_df["dataframe"].columns:
 #     print(dict_df["dataframe"][col].head(5))

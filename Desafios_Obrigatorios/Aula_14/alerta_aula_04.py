@@ -43,7 +43,8 @@ def alerta(nivel, base, etapa):
                 "Etapa: " + MyStage + "\n" + \
                 "Data: " + MyDate,
             # app_name = "App teste",
-            timeout = 30
+            # timeout = 30
+            timeout = 5
             # toast = True
         )
 
