@@ -175,4 +175,22 @@ def transform_pix(my_dataframe):
     return clean_dataframe
 
 def transform_taxas(my_dataframe):
-    return True
+    
+    clean_dataframe = my_dataframe.copy()
+    clean_dataframe.replace("", np.nan, inplace=True)
+    clean_dataframe.drop_duplicates()
+    clean_dataframe = clean_dataframe.dropna(axis=0)
+
+    clean_dataframe["valor_percentual"] = clean_dataframe["valor"].apply(lambda x: x)
+    clean_dataframe["valor"] = clean_dataframe["valor"].apply(lambda x: x/100)
+
+    subset_int = []
+    clean_dataframe = to_int(clean_dataframe, subset_int)
+
+    subset_float = ["valor_percentual", "valor"]
+    clean_dataframe = to_float(clean_dataframe, subset_float)
+
+    subset_date = []
+    clean_dataframe = to_date(clean_dataframe, subset_date)
+    
+    return clean_dataframe

@@ -34,6 +34,8 @@ elif table_index == 7:
     df=trf.transform_ncm(df)
 elif table_index == 8:
     df=trf.transform_pix(df)
+elif table_index == 9:
+    df=trf.transform_taxas(df)
 
 print("-"*40)
 print("DF Limpo:")
