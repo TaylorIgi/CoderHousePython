@@ -113,7 +113,28 @@ def transform_feriados(my_dataframe):
     return clean_dataframe
 
 def transform_uf_regiao(my_dataframe):
-    return True
+    
+    clean_dataframe = my_dataframe.copy()
+
+    clean_dataframe["regiao_id"] = clean_dataframe["regiao"].apply(lambda x: x["id"])
+    clean_dataframe["regiao_sigla"] = clean_dataframe["regiao"].apply(lambda x: x["sigla"])
+    clean_dataframe["regiao_nome"] = clean_dataframe["regiao"].apply(lambda x: x["nome"])
+    clean_dataframe = clean_dataframe.drop(columns=["regiao"])
+
+    clean_dataframe.replace("", np.nan, inplace=True)
+    clean_dataframe.drop_duplicates()
+    clean_dataframe = clean_dataframe.dropna(axis=0)
+
+    subset_int = ["id", "regiao_id"]
+    clean_dataframe = to_int(clean_dataframe, subset_int)
+
+    subset_float = []
+    clean_dataframe = to_float(clean_dataframe, subset_float)
+
+    subset_date = []
+    clean_dataframe = to_date(clean_dataframe, subset_date)
+    
+    return clean_dataframe
 
 def transform_ncm(my_dataframe):
     return True
