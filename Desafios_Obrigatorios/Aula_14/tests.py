@@ -8,13 +8,25 @@ api_list_df = api.get_api_list_from_xls()
 table_index = api.choose_api(api_list_df)
 df = api.get_dataframe(api_list_df, table_index)
 
-print("DF Original:")
-print(df.info())
+# print("DF Original:")
+# print(df.info())
 # print(df.head())
 
-print("-"*40)
-print("DF Limpo:")
-print(trf.transform_bancos(df).info())
+# print("-"*40)
+# for col in df.columns:
+#     print(col)
+#     print(df[col].unique())
+#     print("-"*40)
+
+if table_index == 0:
+    df=trf.transform_bancos(df)
+elif table_index == 1:
+    df=trf.transform_corretoras(df)
+
+# print("-"*40)
+# print("DF Limpo:")
+
+# print(df.info())
 
 # db = sql.connect_to_db("DB_TESTE.db")
 
