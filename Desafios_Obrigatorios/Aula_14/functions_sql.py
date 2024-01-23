@@ -15,3 +15,8 @@ def get_db_tables(conn):
 def connect_to_db(database_name):
     conn = sqlite3.connect(database_name)
     return classes.MyDatabase(database_name, conn)
+
+# Adiciona um dataframe no database do object_mydatabase e inclui o nome da tabela no mesmo objeto
+def add_df_to_db(object_mydatabase, dataframe, database_table_name):
+    dataframe.to_sql(database_table_name, object_mydatabase.db_conn, if_exists="replace", index=False)
+    object_mydatabase.add_table(database_table_name)

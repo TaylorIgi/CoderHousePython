@@ -23,12 +23,10 @@ df2 = pd.DataFrame(dados2)
 teste = functions_sql.connect_to_db("DB_TESTE.db")
 
 # Inclui df1 no db e nas tabelas da instancia de mydb
-df1.to_sql("tb_df1", teste.db_conn, if_exists="replace", index=False)
-teste.add_table("tb_df1")
+functions_sql.add_df_to_db(teste, df1, "tb_df1")
 
 # Inclui df2 no db e nas tabelas da instancia de mydb
-df2.to_sql("tb_df2", teste.db_conn, if_exists="replace", index=False)
-teste.add_table("tb_df2")
+functions_sql.add_df_to_db(teste, df2, "tb_df2")
 
 db_tables = functions_sql.get_db_tables(teste.db_conn)
 
