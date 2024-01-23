@@ -24,6 +24,8 @@ elif table_index == 1:
     df=trf.transform_corretoras(df)
 elif table_index == 2:
     df=trf.transform_cidade_uf(df)
+elif table_index == 3:
+    df=trf.transform_clima(df)
 
 print("-"*40)
 print("DF Limpo:")
