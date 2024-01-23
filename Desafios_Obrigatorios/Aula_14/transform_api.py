@@ -156,7 +156,23 @@ def transform_ncm(my_dataframe):
     return clean_dataframe
 
 def transform_pix(my_dataframe):
-    return True
+    
+    clean_dataframe = my_dataframe.copy()
+    clean_dataframe.replace("", np.nan, inplace=True)
+    clean_dataframe.drop_duplicates()
+    my_subset = ["ispb", "nome", "modalidade_participacao", "tipo_participacao", "inicio_operacao"]
+    clean_dataframe = clean_dataframe.dropna(axis=0, subset=my_subset)
+
+    subset_int = []
+    clean_dataframe = to_int(clean_dataframe, subset_int)
+
+    subset_float = []
+    clean_dataframe = to_float(clean_dataframe, subset_float)
+
+    subset_date = ["inicio_operacao"]
+    clean_dataframe = to_date(clean_dataframe, subset_date)
+    
+    return clean_dataframe
 
 def transform_taxas(my_dataframe):
     return True

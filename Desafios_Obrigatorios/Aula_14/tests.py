@@ -32,6 +32,8 @@ elif table_index == 6:
     df=trf.transform_uf_regiao(df)
 elif table_index == 7:
     df=trf.transform_ncm(df)
+elif table_index == 8:
+    df=trf.transform_pix(df)
 
 print("-"*40)
 print("DF Limpo:")
