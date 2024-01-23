@@ -20,19 +20,17 @@ dados2 = {
 }
 df2 = pd.DataFrame(dados2)
 
-# Conecta no db e cria uma instancia de mydb
-conn = sqlite3.connect("DB_TESTE.db")
-TesteDb = classes.MyDatabase("DB_TESTE.db", conn)
+teste = functions_sql.connect_to_db("DB_TESTE.db")
 
 # Inclui df1 no db e nas tabelas da instancia de mydb
-df1.to_sql("df_teste1", conn, if_exists="replace", index=False)
-TesteDb.add_table("df_teste1")
+df1.to_sql("tb_df1", teste.db_conn, if_exists="replace", index=False)
+teste.add_table("tb_df1")
 
 # Inclui df2 no db e nas tabelas da instancia de mydb
-df2.to_sql("df_teste2", conn, if_exists="replace", index=False)
-TesteDb.add_table("df_teste2")
+df2.to_sql("tb_df2", teste.db_conn, if_exists="replace", index=False)
+teste.add_table("tb_df2")
 
-db_tables = functions_sql.get_db_tables(conn)
+db_tables = functions_sql.get_db_tables(teste.db_conn)
 
 print("-"*40)
 print("Tabelas no DB:")
@@ -41,4 +39,4 @@ for table in db_tables:
 
 print("-"*40)
 print("Tabelas no objeto:")
-TesteDb.list_tables()
+teste.list_tables()
