@@ -23,10 +23,26 @@ if table_index == 0:
 elif table_index == 1:
     df=trf.transform_corretoras(df)
 
+# errors=[]
+# for row in range(0,len(df)):
+#     try:
+#         #df.loc[row, "valor_patrimonio_liquido"].astype(float)
+#         float(df.loc[row, "valor_patrimonio_liquido"])
+#     except ValueError:
+#         current_row = {
+#             "row": row,
+#             "value":df.loc[row, "valor_patrimonio_liquido"],
+#             }
+#         errors.append(current_row)
+
+# print(len(df))
+# print(len(errors))
+
+
 # print("-"*40)
 # print("DF Limpo:")
 
-# print(df.info())
+print(df.info())
 
 # db = sql.connect_to_db("DB_TESTE.db")
 

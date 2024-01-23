@@ -38,12 +38,11 @@ def transform_corretoras(my_dataframe):
     subset_int = ["codigo_cvm"]
     clean_dataframe = to_int(clean_dataframe, subset_int)
 
-    print(clean_dataframe["valor_patrimonio_liquido"].unique())
     clean_dataframe["valor_patrimonio_liquido"].replace(np.nan, 0, inplace=True)
-    print("-"*40)
-    print(clean_dataframe["valor_patrimonio_liquido"].unique())
+    
     # subset_float = ["valor_pratrimonio_liquido"]
     # clean_dataframe = to_float(clean_dataframe, subset_float)
+    clean_dataframe["valor_patrimonio_liquido"] = list(map(float, clean_dataframe["valor_patrimonio_liquido"]))
     
     subset_date = ["data_patrimonio_liquido", "data_inicio_situacao", "data_registro"]
     clean_dataframe = to_date(clean_dataframe, subset_date)
