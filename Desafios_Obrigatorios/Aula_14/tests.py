@@ -8,8 +8,8 @@ api_list_df = api.get_api_list_from_xls()
 table_index = api.choose_api(api_list_df)
 df = api.get_dataframe(api_list_df, table_index)
 
-# print("DF Original:")
-# print(df.info())
+print("DF Original:")
+print(df.info())
 # print(df.head())
 
 # print("-"*40)
@@ -23,24 +23,8 @@ if table_index == 0:
 elif table_index == 1:
     df=trf.transform_corretoras(df)
 
-# errors=[]
-# for row in range(0,len(df)):
-#     try:
-#         #df.loc[row, "valor_patrimonio_liquido"].astype(float)
-#         float(df.loc[row, "valor_patrimonio_liquido"])
-#     except ValueError:
-#         current_row = {
-#             "row": row,
-#             "value":df.loc[row, "valor_patrimonio_liquido"],
-#             }
-#         errors.append(current_row)
-
-# print(len(df))
-# print(len(errors))
-
-
-# print("-"*40)
-# print("DF Limpo:")
+print("-"*40)
+print("DF Limpo:")
 
 print(df.info())
 

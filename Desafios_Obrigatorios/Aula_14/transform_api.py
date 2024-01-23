@@ -40,6 +40,9 @@ def transform_corretoras(my_dataframe):
 
     clean_dataframe["valor_patrimonio_liquido"].replace(np.nan, 0, inplace=True)
     
+    '''
+    Analisar pq não foi possível converter do mesmo modo dos inteiros!!!!!!!!!!!!!
+    '''
     # subset_float = ["valor_pratrimonio_liquido"]
     # clean_dataframe = to_float(clean_dataframe, subset_float)
     clean_dataframe["valor_patrimonio_liquido"] = list(map(float, clean_dataframe["valor_patrimonio_liquido"]))
