@@ -22,6 +22,8 @@ if table_index == 0:
     df=trf.transform_bancos(df)
 elif table_index == 1:
     df=trf.transform_corretoras(df)
+elif table_index == 2:
+    df=trf.transform_cidade_uf(df)
 
 print("-"*40)
 print("DF Limpo:")
