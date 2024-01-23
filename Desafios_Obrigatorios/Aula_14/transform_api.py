@@ -95,7 +95,22 @@ def transform_clima(my_dataframe):
     return clean_dataframe
 
 def transform_feriados(my_dataframe):
-    return True
+
+    clean_dataframe = my_dataframe.copy()
+    clean_dataframe.replace("", np.nan, inplace=True)
+    clean_dataframe.drop_duplicates()
+    clean_dataframe = clean_dataframe.dropna(axis=0)
+
+    subset_int = []
+    clean_dataframe = to_int(clean_dataframe, subset_int)
+
+    subset_float = []
+    clean_dataframe = to_float(clean_dataframe, subset_float)
+
+    subset_date = ["date"]
+    clean_dataframe = to_date(clean_dataframe, subset_date)
+    
+    return clean_dataframe
 
 def transform_uf_regiao(my_dataframe):
     return True
