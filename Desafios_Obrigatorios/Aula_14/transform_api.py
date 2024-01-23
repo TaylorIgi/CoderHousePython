@@ -137,7 +137,23 @@ def transform_uf_regiao(my_dataframe):
     return clean_dataframe
 
 def transform_ncm(my_dataframe):
-    return True
+    
+    clean_dataframe = my_dataframe.copy()
+    clean_dataframe.replace("", np.nan, inplace=True)
+    clean_dataframe.drop_duplicates()
+    clean_dataframe = clean_dataframe.dropna(axis=0, subset=["codigo", "data_inicio", "numero_ato", "ano_ato"])
+    clean_dataframe = clean_dataframe.drop(columns=["data_fim"])
+
+    subset_int = ["numero_ato", "ano_ato"]
+    clean_dataframe = to_int(clean_dataframe, subset_int)
+
+    subset_float = []
+    clean_dataframe = to_float(clean_dataframe, subset_float)
+
+    subset_date = ["data_inicio"]
+    clean_dataframe = to_date(clean_dataframe, subset_date)
+    
+    return clean_dataframe
 
 def transform_pix(my_dataframe):
     return True

@@ -30,6 +30,8 @@ elif table_index == 4:
     df=trf.transform_feriados(df)
 elif table_index == 6:
     df=trf.transform_uf_regiao(df)
+elif table_index == 7:
+    df=trf.transform_ncm(df)
 
 print("-"*40)
 print("DF Limpo:")
