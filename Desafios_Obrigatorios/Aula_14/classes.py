@@ -10,6 +10,6 @@ class MyDatabase:
         self.tables = []
     def add_table(self, new_table):
         self.tables.append(new_table)
-    def list_tables(self):
+    def list_tables(self): # Não está sendo utilizado...
         for table in self.tables:
             print(table)

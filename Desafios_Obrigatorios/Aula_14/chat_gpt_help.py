@@ -19,3 +19,28 @@ tables = get_table_names(db_name)
 print("Tabelas no banco de dados:")
 for table in tables:
     print(table)
+
+################################################################################
+
+import os
+
+def drop_database(db_name):
+    # Verifica se o arquivo do banco de dados existe
+    if os.path.exists(db_name):
+        # Conecta ao banco de dados
+        conn = sqlite3.connect(db_name)
+        
+        # Obtém um cursor
+        cursor = conn.cursor()
+        
+        # Fecha a conexão com o banco de dados
+        conn.close()
+        
+        # Remove o arquivo do banco de dados
+        os.remove(db_name)
+        print(f'Banco de dados {db_name} removido com sucesso.')
+    else:
+        print(f'O banco de dados {db_name} não existe.')
+
+# Substitua 'nome_do_banco.db' pelo nome do seu banco de dados SQLite
+drop_database('nome_do_banco.db')

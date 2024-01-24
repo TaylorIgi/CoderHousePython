@@ -8,8 +8,8 @@ api_list_df = api.get_api_list_from_xls()
 table_index = api.choose_api(api_list_df)
 df = api.get_dataframe(api_list_df, table_index)
 
-print("DF Original:")
-print(df.info())
+# print("DF Original:")
+# print(df.info())
 # print(df.head())
 
 # print("-"*40)
@@ -37,23 +37,24 @@ elif table_index == 8:
 elif table_index == 9:
     df=trf.transform_taxas(df)
 
-print("-"*40)
-print("DF Limpo:")
+# print("-"*40)
+# print("DF Limpo:")
 
-print(df.info())
+# print(df.info())
 
-# db = sql.connect_to_db("DB_TESTE.db")
+db = sql.connect_to_db("DB_TESTE.db")
 
 # # Inclui df1 no db e nas tabelas da instancia de mydb
-# sql.add_df_to_db(db, df, "tb_df")
+table_name = "tb_" + api_list_df.loc[table_index, "API"].lower()
+# sql.add_df_to_db(db, df, table_name)
 
-# db_tables = sql.get_db_tables(db.db_conn)
+db_tables = sql.get_db_tables(db.db_conn)
 
-# print("-"*40)
-# print("Tabelas no DB:")
-# for table in db_tables:
-#     print(f"Tabela >> {table}")
+print("-"*40)
+print("Tabelas no DB:")
+for table in db_tables:
+    print(f"Tabela >> {table}")
 
-# print("-"*40)
-# print("Tabelas no objeto:")
-# db.list_tables()
+print("-"*40)
+print("Tabelas no objeto:")
+db.list_tables()
