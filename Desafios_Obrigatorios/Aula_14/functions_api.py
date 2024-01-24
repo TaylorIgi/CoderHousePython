@@ -35,7 +35,7 @@ def print_api_list(api_list_df):
 # Retorna o índice da API escolhida (-1 se der erro na API)
 def choose_api(api_list_df):
     print_api_list(api_list_df)
-    choosen_table_index = int(input(f"Digite o número da tabela: "))
+    choosen_table_index = int(input(f"Digite o número da API: "))
     if not check_api_get_data(api_get_data(api_list_df.loc[choosen_table_index, "URL"]).status_code):
         warning.alerta(3, api_list_df.loc[choosen_table_index, "API"], "Request GET URL")
         return -1

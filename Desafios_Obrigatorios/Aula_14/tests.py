@@ -46,7 +46,7 @@ db = sql.connect_to_db("DB_TESTE.db")
 
 # # Inclui df1 no db e nas tabelas da instancia de mydb
 table_name = "tb_" + api_list_df.loc[table_index, "API"].lower()
-# sql.add_df_to_db(db, df, table_name)
+sql.add_df_to_db(db, df, table_name)
 
 db_tables = sql.get_db_tables(db.db_conn)
 
