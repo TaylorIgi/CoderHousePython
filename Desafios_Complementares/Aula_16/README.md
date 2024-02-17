@@ -28,6 +28,7 @@ Optamos por dividir o projeto em arquivos específicos para facilitar a leitura 
 - Bibliotecas Python listadas no arquivo `requirements.txt`.
 
 ## Referências
+- Brasil API ( https://brasilapi.com.br/ )
 - Curso de python da coderhouse ( https://www.coderhouse.com.br/online/python-br )
 - Harvard CS50's Introduction to Programming with Python ( https://www.youtube.com/watch?v=nLRL_NcnK-4 )
 - Videos diversos do canal `Torne-se um programador` ( https://www.youtube.com/@torneseumprogramador )
