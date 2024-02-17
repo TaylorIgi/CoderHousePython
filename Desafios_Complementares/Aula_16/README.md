@@ -1,14 +1,19 @@
 # Projeto Final
 ## Coderhouse - Python - Turma 54360
-#### Taylor Igi
 
+## Descrição
 
 Este é o projeto de conclusão do curso de Python da Coderouse.
 O objetivo era a construção de um pipeline de dados, que envolvia a extração e tratamento dos dados de uma API, criação de alertas para o processo, deploy e documentação.
 
 Optamos por dividir o projeto em arquivos específicos para facilitar a leitura e manutenção do código.
 
-## Arquivos - Resumo
+## Autor
+
+Taylor Igi
+https://github.com/TaylorIgi
+
+## Arquivos
 
 - **`alerta_aula_04.py`**: Funções para exibir alertas de notificação conforme especificações recebidas na aula 04 do curso
 - **`classes.py`** Define a classe `MyDatabase` com seus atributos e métodos
