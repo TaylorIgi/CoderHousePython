@@ -1,10 +1,10 @@
 # Projeto Final
 ## Coderhouse - Python - Turma 54360
-## Taylor Igi
+#### Taylor Igi
 
 
 Este é o projeto de conclusão do curso de Python da Coderouse.
-O objetivo era a construção de um pipeline de dados, que envolvia a extração e trataento dos dados de uma API, criação de alertas para o processo, deploy e documentação.
+O objetivo era a construção de um pipeline de dados, que envolvia a extração e tratamento dos dados de uma API, criação de alertas para o processo, deploy e documentação.
 
 Optamos por dividir o projeto em arquivos específicos para facilitar a leitura e manutenção do código.
 
